@@ -10,7 +10,8 @@ class QiniuManager {
     // init config class
     this.config = new qiniu.conf.Config()
     // 空间对应的机房
-    this.config.zone = qiniu.zone.Zone_z0
+    // this.config.zone = qiniu.zone.Zone_z0
+    this.config.zone = qiniu.zone.Zone_z2
 
     this.bucketManager = new qiniu.rs.BucketManager(this.mac, this.config);
   }
@@ -37,7 +38,7 @@ class QiniuManager {
   getBucketDomain() {
     const reqURL = `http://api.qiniu.com/v6/domain/list?tbl=${this.bucket}`
     const digest = qiniu.util.generateAccessToken(this.mac, reqURL)
-    console.log('trigger here')
+    // console.log('trigger here')
     return new Promise((resolve, reject) => {
       qiniu.rpc.postWithoutForm(reqURL, digest, this._handleCallback(resolve, reject))
     })

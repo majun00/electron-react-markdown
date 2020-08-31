@@ -9,7 +9,7 @@ const downloadPath = path.join(__dirname, key)
 
 const manager = new QiniuManager(accessKey, secretKey, 'markdown')
 manager.uploadFile(key, downloadPath).then((data) => {
-  console.log('上传成功',data)
+  // console.log('上传成功',data)
 })
 //manager.deleteFile(key)
 // manager.generateDownloadLink(key).then(data => {

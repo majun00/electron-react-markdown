@@ -13,6 +13,7 @@ const createManager = () => {
   const accessKey = settingsStore.get('accessKey');
   const secretKey = settingsStore.get('secretKey');
   const bucketName = settingsStore.get('bucketName');
+  // console.log('[createManager]', accessKey, secretKey, bucketName);
   return new QiniuManager(accessKey, secretKey, bucketName);
 };
 app.on('ready', () => {
@@ -53,11 +54,11 @@ app.on('ready', () => {
     manager
       .uploadFile(data.key, data.path)
       .then((data) => {
-        console.log('上传成功', data);
+        // console.log('上传成功', data);
         mainWindow.webContents.send('active-file-uploaded');
       })
       .catch((err) => {
-        console.error('[uploadFile-err]', err);
+        // console.error('[uploadFile-err]', err);
         dialog.showErrorBox('同步失败', '请检查七牛云参数是否正确');
       });
   });
@@ -103,7 +104,7 @@ app.on('ready', () => {
     });
     Promise.all(uploadPromiseArr)
       .then((result) => {
-        console.log(2, result);
+        // console.log(2, result);
         // show uploaded message
         dialog.showMessageBox({
           type: 'info',
